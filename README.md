@@ -32,24 +32,25 @@ a new entry for the block is added.
 4. dataCenter.h: Contains a wrapper object which stores a list of all Servers and the extentServer present in the datacenter
 
 5. driver.cpp: Initiates Servers and their VMs and orchestrates the whole process of disk I/O operations occuring in the entire datacentre. It's mechanism of action is as follows:
-a. Initialize Servers
 
-b. Initialize VMs and open their input files
+ a. Initialize Servers
 
-c. While some VM still has inputs to process
+ b. Initialize VMs and open their input files
 
-d. Schedule next VM and decide number of addresses it will proccess at most
+ c. While some VM still has inputs to process
+
+ d. Schedule next VM and decide number of addresses it will proccess at most
 (Assuming that input for each type will be of type: logicalAddress R/W)
 
-e. For a read, simply convert logical to physical and read the block contents(ie. add the time)
+ e. For a read, simply convert logical to physical and read the block contents(ie. add the time)
 
-f. For a write, call the write() function
+ f. For a write, call the write() function
 
-g. After every n writes(n defined by user in config file), invoke the dupFinder() followed by garbageCollector()
+ g. After every n writes(n defined by user in config file), invoke the dupFinder() followed by garbageCollector()
 
-h. When a VM finishes processing all addresses from its input file, close the file
+ h. When a VM finishes processing all addresses from its input file, close the file
 
-i. When files of all VMs get closed, shut down the server thread
+ i. When files of all VMs get closed, shut down the server thread
 
 
 ## Description of mechanism of action from a Server's viewpoint
